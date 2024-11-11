@@ -1,0 +1,17 @@
+.characterItem {
+  display: flex;
+  height: 3rem;
+  width: 8rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: red;
+}
+
+.characterItem:hover {
+  transform: scale(1.05);
+}
+
+.characterItem img {
+  width: 2rem;
+  height: 2rem;
+}

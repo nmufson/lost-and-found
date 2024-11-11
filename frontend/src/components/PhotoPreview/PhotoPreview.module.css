@@ -1,0 +1,14 @@
+.photoPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.photoPreview img {
+  height: 20rem;
+  width: 20rem;
+  object-fit: none;
+  object-position: 50% 70%;
+  /* filter: blur(3px); */
+}
