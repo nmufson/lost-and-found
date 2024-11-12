@@ -22,3 +22,14 @@ export async function getScoresByPhotoId(req: Request, res: Response) {
 
   res.status(200).json({ message: 'Score data found successfully', scoreData });
 }
+
+export async function getPhotoBySlug(req: Request, res: Response) {
+  const slug = req.params.slug;
+  const photo = await photoServices.getPhotoBySlug(slug);
+
+  if (!photo) {
+    return res.status(404).json({ message: 'Photo not found' });
+  }
+
+  res.status(200).json({ message: 'Photo found successfully', photo });
+}

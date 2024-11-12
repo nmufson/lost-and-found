@@ -12,3 +12,16 @@ export const fetchPhotoPreviews = async () => {
     throw error;
   }
 };
+
+export const fetchPhotoBySlug = async (slug: string) => {
+  try {
+    const response = await fetch(`${API_URL}/photo/slug/${slug}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch photo');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching photo:', error);
+    throw error;
+  }
+};

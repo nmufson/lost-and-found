@@ -5,8 +5,11 @@ const CharacterItem = ({ character, handleCharacterClick }) => {
   const iconURL = `${API_URL}${character.image}`;
 
   return (
-    <div className={styles.characterItem} onClick={handleCharacterClick}>
-      <img src={iconURL} alt={character.name} />
+    <div
+      className={`${styles.characterItem} ${character.found ? styles.found : ''}`}
+      onClick={handleCharacterClick}
+    >
+      <img src={iconURL} alt={`${character.name} icon`} />
       <p>{character.name}</p>
     </div>
   );

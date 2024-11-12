@@ -18,3 +18,18 @@
   color: black;
   transform: translate(20%, -20%);
 }
+
+.timerDiv {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  width: 10rem;
+  height: 4rem;
+  z-index: 1500;
+}
+
+.timerDiv p {
+  color: white;
+}

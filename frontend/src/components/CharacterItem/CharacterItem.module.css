@@ -5,6 +5,7 @@
   justify-content: space-around;
   align-items: center;
   background-color: red;
+  cursor: pointer;
 }
 
 .characterItem:hover {
@@ -14,4 +15,10 @@
 .characterItem img {
   width: 2rem;
   height: 2rem;
+}
+
+.characterItem.found {
+  background-color: lightcoral;
+  opacity: 0.5;
+  cursor: not-allowed;
 }

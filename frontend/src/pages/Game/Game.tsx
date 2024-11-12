@@ -1,24 +1,63 @@
 import styles from './Game.module.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect, useRef, isValidElement } from 'react';
 import CharacterItem from '../../components/CharacterItem/CharacterItem';
 import Notification from '../../components/Notification/Notification';
 const API_URL = import.meta.env.VITE_API_URL;
 import { Photo, Character } from '../../../types';
+import { fetchPhotoBySlug } from '../../services/photoServices';
+import formatTime from '../../utils/formatTime';
+import StartGameModal from '../../components/Modals/StartGameModal/StartGameModal';
+import RecordTimeModal from '../../components/Modals/RecordTimeModal/RecordTimeModal';
 
 const Game = () => {
   const location = useLocation();
-  const photo = location.state?.photo;
-
-  const imageURL = `${API_URL}${photo.image}`;
-
-  const imageRef = useRef(null);
-  const [characters, setCharacters] = useState(
-    photo.characters.map((character: Character) => ({
+  const [photo, setPhoto] = useState<Photo | null>(
+    location.state?.photo || null,
+  );
+  const [imageURL, setImageURL] = useState<string | null>(
+    `${API_URL}${photo?.image}` || null,
+  );
+  const [characters, setCharacters] = useState<Character[] | null>(
+    photo?.characters.map((character: Character) => ({
       ...character,
       found: false,
-    })),
+    })) || null,
   );
+  const [gameInfo, setGameInfo] = useState({
+    isStartGameModalOpen: true,
+    isRecordTimeModalOpen: false,
+    isGameActive: false,
+    time: 0,
+  });
+  const { slug } = useParams();
+
+  useEffect(() => {
+    if (!location.state) {
+      const getGame = async () => {
+        try {
+          console.log(slug);
+          const data = await fetchPhotoBySlug(slug);
+          setPhoto(data.photo);
+          setImageURL(`${API_URL}${data.photo.image}`);
+          setCharacters(
+            data.photo.characters.map((character: Character) => ({
+              ...character,
+              found: false,
+            })),
+          );
+        } catch (error) {
+          console.error('Error fetching photo:', error);
+        } finally {
+          // setLoading(false);
+        }
+      };
+
+      getGame();
+    }
+  }, [slug, location.state]);
+
+  const imageRef = useRef(null);
 
   const [notification, setNotification] = useState({
     isVisible: false,
@@ -105,15 +144,68 @@ const Game = () => {
       selectedY < character.positionY + margin
     ) {
       setNotification({ isVisible: true, success: true, character });
-      console.log('success!');
+      const newCharacters = characters.map((char) =>
+        char.id === character.id ? { ...char, found: true } : char,
+      );
+      setCharacters(newCharacters);
+
+      const allFound = newCharacters.every((char) => char.found === true);
+      if (allFound) {
+        handleStopGame();
+      }
     } else {
       setNotification({ isVisible: true, success: false, character: null });
     }
 
+    setMenu({
+      isOpen: false,
+      position: null,
+      initialPosition: null,
+      relativePosition: null,
+    });
     setTimeout(() => {
       setNotification({ isVisible: false, success: null, character: null });
-      console.log('here');
     }, 2000);
+  };
+
+  useEffect(() => {
+    if (gameInfo.isGameActive) {
+      const timer = setInterval(() => {
+        setGameInfo((prevGameInfo) => ({
+          ...prevGameInfo,
+          time: prevGameInfo.time + 1,
+        }));
+      }, 100);
+
+      // clear timer on unmount
+      return () => clearInterval(timer);
+    }
+  }, [gameInfo.isGameActive]);
+
+  const handleStartGame = () => {
+    setGameInfo((prevGameInfo) => ({
+      ...prevGameInfo,
+      isStartGameModalOpen: false,
+      isGameActive: true,
+    }));
+  };
+
+  const handleStopGame = () => {
+    setGameInfo((prevGameInfo) => ({
+      ...prevGameInfo,
+      isGameActive: false,
+      isRecordTimeModalOpen: true,
+    }));
+  };
+
+  const handleSubmitScore = async (username) => {
+    try {
+      // store the time in deciseconds and format later
+      const response = await newScore(gameInfo.time, username, photo.id);
+      const newScore = response.newScore;
+    } catch (error) {
+      console.error('Failed to submit score:', error);
+    }
   };
 
   // useEffect(() => {
@@ -122,39 +214,58 @@ const Game = () => {
   //   };
   // }, []);
 
+  if (!photo) return <div>loading...</div>;
+
   return (
-    <div className={styles.game}>
-      <img
-        src={imageURL}
-        ref={imageRef}
-        className={styles.illustration}
-        alt={`Game Illustration - ${photo.name}`}
-        onClick={handleClick}
-      />
-      {menu.isOpen && menu.position && (
-        <div
-          className={styles.menu}
-          style={{
-            left: menu.position.x,
-            top: menu.position.y,
-          }}
-        >
-          {characters.map((char) => (
-            <CharacterItem
-              key={char.id}
-              character={char}
-              handleCharacterClick={() => handleCharacterClick(char)}
-            />
-          ))}
-        </div>
-      )}
-      {notification.isVisible && (
-        <Notification
-          success={notification.success}
-          character={notification.character}
+    <>
+      {gameInfo.isRecordTimeModalOpen && (
+        <RecordTimeModal
+          handleSubmitScore={handleSubmitScore}
+          time={gameInfo.time}
         />
       )}
-    </div>
+      {gameInfo.isStartGameModalOpen && (
+        <StartGameModal
+          photo={photo}
+          handleStartGame={handleStartGame}
+        ></StartGameModal>
+      )}
+      <div className={styles.timerDiv}>
+        <p>{formatTime(gameInfo.time)}</p>
+      </div>
+      <div className={styles.game} onClick={() => console.log(characters)}>
+        <img
+          src={imageURL}
+          ref={imageRef}
+          className={styles.illustration}
+          alt={`Game Illustration - ${photo.name}`}
+          onClick={handleClick}
+        />
+        {menu.isOpen && menu.position && (
+          <div
+            className={styles.menu}
+            style={{
+              left: menu.position.x,
+              top: menu.position.y,
+            }}
+          >
+            {characters.map((char) => (
+              <CharacterItem
+                key={char.id}
+                character={char}
+                handleCharacterClick={() => handleCharacterClick(char)}
+              />
+            ))}
+          </div>
+        )}
+        {notification.isVisible && (
+          <Notification
+            success={notification.success}
+            character={notification.character}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

@@ -32,6 +32,15 @@ export async function getPhotoById(photoId: number) {
   });
 }
 
+export async function getPhotoBySlug(slug: string) {
+  return await prisma.photo.findUnique({
+    where: { slug },
+    include: {
+      characters: true,
+    },
+  });
+}
+
 export async function getPhotoWithScoresById(photoId: number) {
   return await prisma.photo.findUnique({
     where: { id: photoId },
