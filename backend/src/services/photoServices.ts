@@ -12,6 +12,15 @@ export async function getPhotoPreviews() {
   });
 }
 
+export async function getPhotos() {
+  return await prisma.photo.findMany({
+    include: {
+      characters: true,
+      scores: true,
+    },
+  });
+}
+
 export async function getPhotoById(photoId: number) {
   return await prisma.photo.findUnique({
     where: { id: photoId },

@@ -2,7 +2,7 @@ import * as photoServices from '../services/photoServices';
 
 export async function getHomePage(req: Request, res: Response) {
   try {
-    const photos = await photoServices.getPhotoPreviews();
+    const photos = await photoServices.getPhotos();
 
     const data = {
       title: 'Home Page',

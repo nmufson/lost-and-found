@@ -10,14 +10,17 @@ async function main() {
     {
       image: '/images/illustrations/space.jpg',
       name: 'Space',
+      slug: 'space',
     },
     {
       image: '/images/illustrations/town.jpg',
       name: 'Town',
+      slug: 'town',
     },
     {
       image: '/images/illustrations/gamer-hub.jpg',
       name: 'Gamer Hub',
+      slug: 'gamer-hub',
     },
   ];
 
@@ -53,42 +56,42 @@ async function main() {
     },
     {
       name: 'Panda',
-      image: '/images/characters/space/panda.png',
+      image: '/images/characters/town/panda.png',
       positionX: 0.4,
       positionY: 0.35,
       photoId: photos[1].id,
     },
     {
       name: 'Porcupine',
-      image: '/images/characters/space/porcupine.png',
+      image: '/images/characters/town/porcupine.png',
       positionX: 0.04,
       positionY: 0.77,
       photoId: photos[1].id,
     },
     {
       name: 'Waldo',
-      image: '/images/characters/space/waldo.png',
+      image: '/images/characters/town/waldo.png',
       positionX: 0.46,
       positionY: 0.92,
       photoId: photos[1].id,
     },
     {
       name: 'Finn',
-      image: '/images/characters/space/finn.png',
+      image: '/images/characters/gamer-hub/finn.png',
       positionX: 0.035,
       positionY: 0.49,
       photoId: photos[2].id,
     },
     {
       name: 'R2-D2',
-      image: '/images/characters/space/R2-D2.png',
+      image: '/images/characters/gamer-hub/R2-D2.png',
       positionX: 0.8,
       positionY: 0.77,
       photoId: photos[2].id,
     },
     {
       name: 'Sonic',
-      image: '/images/characters/space/sonic.png',
+      image: '/images/characters/gamer-hub/sonic.png',
       positionX: 0.77,
       positionY: 0.66,
       photoId: photos[2].id,

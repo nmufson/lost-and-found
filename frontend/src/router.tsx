@@ -1,11 +1,11 @@
-import Layout from "./components/Layout/Layout";
-import Home from "./pages/Home/Home";
-import Game from "./pages/Game/Game";
-import { createBrowserRouter } from "react-router-dom";
+import Layout from './components/Layout/Layout';
+import Home from './pages/Home/Home';
+import Game from './pages/Game/Game';
+import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
@@ -13,11 +13,11 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "home/",
+        path: 'home/',
         element: <Home />,
       },
       {
-        path: "game/",
+        path: 'game/:slug',
         element: <Game />,
       },
     ],

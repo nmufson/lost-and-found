@@ -1,20 +1,37 @@
 import styles from './Game.module.css';
-import videoGame from '../../assets/video-game.jpg';
-import space from '../../assets/space.jpg';
-import town from '../../assets/town.jpg';
-import finnIcon from '../../assets/finn-icon.png';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef, isValidElement } from 'react';
 import CharacterItem from '../../components/CharacterItem/CharacterItem';
+import Notification from '../../components/Notification/Notification';
+const API_URL = import.meta.env.VITE_API_URL;
+import { Photo, Character } from '../../../types';
 
 const Game = () => {
+  const location = useLocation();
+  const photo = location.state?.photo;
+
+  const imageURL = `${API_URL}${photo.image}`;
+
   const imageRef = useRef(null);
+  const [characters, setCharacters] = useState(
+    photo.characters.map((character: Character) => ({
+      ...character,
+      found: false,
+    })),
+  );
+
+  const [notification, setNotification] = useState({
+    isVisible: false,
+    success: null,
+    character: null,
+  });
+
   const [menu, setMenu] = useState({
     isOpen: false,
     position: null,
     initialPosition: null,
+    relativePosition: null,
   });
-
-  const boundaryOffset = 500;
 
   const getCoordinates = (pageX, pageY) => {
     if (!imageRef.current) return null;
@@ -39,12 +56,15 @@ const Game = () => {
       isOpen: true,
       position: clickPosition,
       initialPosition: clickPosition,
+      relativePosition: relativePos,
     });
   };
 
   const handleMouseMove = (event) => {
     if (menu.isOpen && menu.initialPosition) {
       const { x, y } = menu.initialPosition;
+
+      const boundaryOffset = 500;
 
       const horizontalBoundary = [x - boundaryOffset, x + boundaryOffset];
       const verticalBoundary = [y - boundaryOffset, y + boundaryOffset];
@@ -72,15 +92,43 @@ const Game = () => {
     };
   }, [menu.initialPosition]);
 
+  const handleCharacterClick = (character) => {
+    const selectedX = menu.relativePosition.x;
+    const selectedY = menu.relativePosition.y;
+
+    const margin = 0.03;
+
+    if (
+      character.positionX - margin < selectedX &&
+      selectedX < character.positionX + margin &&
+      character.positionY - margin < selectedY &&
+      selectedY < character.positionY + margin
+    ) {
+      setNotification({ isVisible: true, success: true, character });
+      console.log('success!');
+    } else {
+      setNotification({ isVisible: true, success: false, character: null });
+    }
+
+    setTimeout(() => {
+      setNotification({ isVisible: false, success: null, character: null });
+      console.log('here');
+    }, 2000);
+  };
+
+  // useEffect(() => {
+  //   return () => {
+  //     clearTimeout();
+  //   };
+  // }, []);
+
   return (
     <div className={styles.game}>
       <img
-        // src={videoGame}
-        src={space}
-        // src={town}
+        src={imageURL}
         ref={imageRef}
         className={styles.illustration}
-        alt="Game Illustration"
+        alt={`Game Illustration - ${photo.name}`}
         onClick={handleClick}
       />
       {menu.isOpen && menu.position && (
@@ -91,19 +139,23 @@ const Game = () => {
             top: menu.position.y,
           }}
         >
-          {data.map((char, index) => (
-            <CharacterItem key={index} name={char.name} icon={char.image} />
+          {characters.map((char) => (
+            <CharacterItem
+              key={char.id}
+              character={char}
+              handleCharacterClick={() => handleCharacterClick(char)}
+            />
           ))}
         </div>
+      )}
+      {notification.isVisible && (
+        <Notification
+          success={notification.success}
+          character={notification.character}
+        />
       )}
     </div>
   );
 };
-
-const data = [
-  { name: 'finn', image: finnIcon },
-  { name: 'finn', image: finnIcon },
-  { name: 'finn', image: finnIcon },
-];
 
 export default Game;
