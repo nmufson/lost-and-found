@@ -1,9 +1,22 @@
 .notification {
   display: flex;
-  border: 3px solid black;
-  background-color: white;
+  border: 3px solid var(--dark);
+  background-color: var(--neutral-gray);
   position: fixed;
-  top: 0;
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  gap: 1rem;
+}
+
+.notification p {
+  font-size: 1.3rem;
+  color: var(--darker);
+}
+
+.notification svg {
+  height: 3rem;
+  width: 3rem;
 }

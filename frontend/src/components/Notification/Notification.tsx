@@ -1,12 +1,18 @@
 import styles from './Notification.module.css';
 import AlertIcon from '../../../public/AlertIcon';
 import SuccessIcon from '../../../public/SuccessIcon';
+import { Character } from '../../../types';
 
-const Notification = ({ success, character }) => {
+interface NotificationProps {
+  success: boolean;
+  character: Character;
+}
+
+const Notification = ({ success, character }: NotificationProps) => {
   return (
     <div className={`${styles.notification} notification`}>
       {success ? <SuccessIcon /> : <AlertIcon />}
-      <p>{success ? `Success, you found ${character.name}` : 'Try Again!'}</p>
+      <p>{success ? `Success, you found ${character.name}!` : 'Try Again'}</p>
     </div>
   );
 };

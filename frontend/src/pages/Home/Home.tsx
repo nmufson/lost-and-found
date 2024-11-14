@@ -1,39 +1,23 @@
-import { useEffect, useState } from 'react';
 import styles from './Home.module.css';
-import { fetchPhotoPreviews } from '../../services/photoServices';
 import PhotoPreview from '../../components/PhotoPreview/PhotoPreview';
+import { useOutletContext } from 'react-router-dom';
 import { Photo } from '../../../types';
 
 const Home = () => {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadPhotos = async () => {
-      try {
-        const data = await fetchPhotoPreviews();
-        setPhotos(data.photos);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError('An unknown error occurred');
-        }
-      } finally {
-        // setLoading(false);
-      }
-    };
-    loadPhotos();
-  }, []);
-  if (error) {
-    return error;
-  }
+  const photos = useOutletContext<Photo[]>();
 
   return (
     <div className={styles.home}>
+      <h1>Select a Game to Start!</h1>
       <div className={styles.previewContainer}>
-        {photos.map((photo) => (
-          <PhotoPreview key={photo.id} photo={photo} />
+        {photos?.map((photo) => (
+          <PhotoPreview
+            key={photo.id}
+            photo={photo}
+            home={true}
+            selectedPhoto={null}
+            setSelectedPhoto={null}
+          />
         ))}
       </div>
     </div>

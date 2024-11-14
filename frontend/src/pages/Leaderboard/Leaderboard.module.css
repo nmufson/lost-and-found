@@ -1,0 +1,46 @@
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.previewContainer {
+  display: flex;
+  gap: 3rem;
+}
+
+.tableContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scoreTable {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: clamp(500px, 60%, 800px);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.tableHeader {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 0.3rem 1rem;
+}
+
+.scoreContainer {
+  grid-column: 1 / -1;
+  background-color: var(--neutral-gray);
+  color: var(--dark);
+}
+
+.leaderboard {
+  margin: 1rem 0 2rem 0;
+}

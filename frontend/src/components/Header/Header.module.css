@@ -1,0 +1,64 @@
+.header {
+  display: flex;
+  padding: 0 0.5rem 0 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.headerContainer {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.headerContainer.home {
+  justify-content: space-between;
+}
+
+.leaderboard {
+  font-size: 1.5rem;
+  margin-right: 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.gameInfoContainer {
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timer {
+  /* prevents it from growing and shaking the other flex items */
+  max-width: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.charIconContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.charContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.charContainer img {
+  border-color: var(--teal);
+}
+
+.charContainer.found {
+  opacity: 0.5;
+  text-decoration: line-through;
+}

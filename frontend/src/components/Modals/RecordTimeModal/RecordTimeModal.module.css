@@ -1,0 +1,48 @@
+.recordTimeModal {
+  gap: 0.8rem;
+}
+
+.timeDiv {
+  display: flex;
+  gap: 1rem;
+}
+
+.formattedTime {
+  font-weight: 700;
+  color: var(--darker);
+}
+
+.usernameInput {
+  width: 100%;
+  background-color: var(--light);
+  color: var(--dark);
+  font-size: 1.5rem;
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--dark);
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  margin-bottom: 0.5rem;
+}
+
+.inputDiv .feedback {
+  align-self: end;
+  font-size: 1rem;
+  height: 1rem;
+  color: red;
+}
+
+.recordTimeModal button {
+  align-self: center;
+  padding: 0 1.5rem;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

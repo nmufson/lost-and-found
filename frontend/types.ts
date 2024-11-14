@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Photo {
   id: number;
   image: string;
@@ -12,6 +14,7 @@ export interface Score {
   photoId: number;
   time: number;
   username: string;
+  date: string;
 }
 
 export interface Character {
@@ -21,4 +24,20 @@ export interface Character {
   photoId: number;
   positionX: number;
   positionY: number;
+  found?: boolean;
+}
+
+export interface GameInfo {
+  isStartGameModalOpen: boolean;
+  isRecordTimeModalOpen: boolean;
+  isGameActive: boolean;
+  time: number;
+}
+
+export interface GameContextType {
+  gameInfo: GameInfo;
+  setGameInfo: React.Dispatch<React.SetStateAction<GameInfo>>;
+  characters: Character[] | null;
+  setCharacters: React.Dispatch<React.SetStateAction<Character[] | null>>;
+  resetGameInfo: () => void;
 }

@@ -38,4 +38,5 @@ model score {
   photo     Photo    @relation(fields: [photoId], references: [id], onDelete: Cascade)
   photoId   Int
   username  String
+  date      DateTime @default(now()) 
 }

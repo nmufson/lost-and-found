@@ -1,28 +1,25 @@
 import styles from './StartGameModal.module.css';
-const API_URL = import.meta.env.VITE_API_URL;
+import CharacterIcon from '../../CharacterIcon/CharacterIcon';
+import { Photo } from '../../../../types';
 
-const StartGameModal = ({ photo, handleStartGame }) => {
+interface StartGameModalProps {
+  photo: Photo;
+  handleStartGame: () => void;
+}
+
+const StartGameModal = ({ photo, handleStartGame }: StartGameModalProps) => {
   return (
     <>
       <div className="backdrop"></div>
       <div className={`${styles.startGameModal} modal`}>
         <h2>Find the Following Characters</h2>
         <div className={styles.iconContainer}>
-          {photo.characters.map((char) => {
-            const imageURL = `${API_URL}${char.image}`;
-
-            return (
-              <img
-                key={char.id}
-                src={imageURL}
-                alt={`${char.name} icon`}
-                className={styles.charIcon}
-              />
-            );
-          })}
+          {photo.characters.map((char) => (
+            <CharacterIcon character={char} />
+          ))}
         </div>
-        <p>Press Start to Begin</p>
-        <button onClick={handleStartGame}>Start</button>
+        <p>Start Game to Begin</p>
+        <button onClick={handleStartGame}>Start Game</button>
       </div>
     </>
   );

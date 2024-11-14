@@ -1,15 +1,22 @@
 import styles from './CharacterItem.module.css';
-const API_URL = import.meta.env.VITE_API_URL;
+import CharacterIcon from '../CharacterIcon/CharacterIcon';
+import { Character } from '../../../types';
 
-const CharacterItem = ({ character, handleCharacterClick }) => {
-  const iconURL = `${API_URL}${character.image}`;
+interface CharacterItemProps {
+  character: Character;
+  handleCharacterClick: (character: Character) => void;
+}
 
+const CharacterItem = ({
+  character,
+  handleCharacterClick,
+}: CharacterItemProps) => {
   return (
     <div
       className={`${styles.characterItem} ${character.found ? styles.found : ''}`}
-      onClick={handleCharacterClick}
+      onClick={() => handleCharacterClick(character)}
     >
-      <img src={iconURL} alt={`${character.name} icon`} />
+      <CharacterIcon character={character} />
       <p>{character.name}</p>
     </div>
   );

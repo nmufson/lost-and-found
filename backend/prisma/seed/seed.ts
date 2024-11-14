@@ -107,14 +107,94 @@ async function main() {
 
   const scoreData = [
     {
-      username: 'Test Player 1',
-      time: 120,
+      username: 'PixelMaster_01',
+      time: 123,
       photoId: photos[0].id,
+      date: new Date('2024-10-01T10:00:00Z'),
     },
     {
-      username: 'Test Player 2',
-      time: 180,
+      username: 'GamingGal_42',
+      time: 181,
       photoId: photos[0].id,
+      date: new Date('2024-10-02T11:00:00Z'),
+    },
+    {
+      username: 'ShadowHunterX',
+      time: 159,
+      photoId: photos[0].id,
+      date: new Date('2024-10-03T12:00:00Z'),
+    },
+    {
+      username: 'NiteRaven_88',
+      time: 165,
+      photoId: photos[0].id,
+      date: new Date('2024-10-04T13:00:00Z'),
+    },
+    {
+      username: 'Speedster_7',
+      time: 147,
+      photoId: photos[0].id,
+      date: new Date('2024-10-05T14:00:00Z'),
+    },
+    {
+      username: 'CyberKnightX',
+      time: 136,
+      photoId: photos[1].id,
+      date: new Date('2024-10-06T15:00:00Z'),
+    },
+    {
+      username: 'VortexVoyager',
+      time: 170,
+      photoId: photos[1].id,
+      date: new Date('2024-10-07T16:00:00Z'),
+    },
+    {
+      username: 'LunarElite_11',
+      time: 112,
+      photoId: photos[1].id,
+      date: new Date('2024-10-08T17:00:00Z'),
+    },
+    {
+      username: 'ViperX_23',
+      time: 186,
+      photoId: photos[1].id,
+      date: new Date('2024-10-09T18:00:00Z'),
+    },
+    {
+      username: 'Ghost_9X',
+      time: 193,
+      photoId: photos[1].id,
+      date: new Date('2024-10-10T19:00:00Z'),
+    },
+    {
+      username: 'TurboTornadoX',
+      time: 208,
+      photoId: photos[2].id,
+      date: new Date('2024-10-11T20:00:00Z'),
+    },
+    {
+      username: 'ArcadeKing_77',
+      time: 215,
+      photoId: photos[2].id,
+      date: new Date('2024-10-12T21:00:00Z'),
+    },
+    {
+      username: 'MysticBlaze_21',
+      time: 227,
+      photoId: photos[2].id,
+      date: new Date('2024-10-13T22:00:00Z'),
+    },
+    {
+      username: 'DragonSoulX',
+      time: 239,
+      photoId: photos[2].id,
+      date: new Date('2024-10-14T23:00:00Z'),
+    },
+    {
+      username: 'StormRiderX',
+      time: 241,
+      photoId: photos[2].id,
+      date: new Date('2024-10-15T00:00:00Z'),
     },
   ];
 

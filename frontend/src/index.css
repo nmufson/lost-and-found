@@ -10,6 +10,18 @@
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
+  justify-items: center;
+}
+
+:root {
+  --dark: #364f6b;
+  --darker: #1a2735;
+  --teal: #3fc1c9;
+  --light: #f5f5f5;
+  --pink: #fc5185;
+
+  --neutral-gray: #b0bec5;
+  --yellow: #ffd166;
 }
 
 button {
@@ -33,6 +45,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+  background-color: var(--light);
+  color: var(--dark);
 }
 
 main {
@@ -41,11 +55,31 @@ main {
   justify-content: center;
 }
 
+header {
+  position: sticky;
+  height: 100px;
+}
+
+footer {
+  height: 75px;
+}
+header,
+footer {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
 button {
-  border: 1px solid black;
+  border: 2px solid var(--darker);
   border-radius: 0.3rem;
-  background-color: lightgray;
+  background-color: var(--dark);
+  color: var(--light);
   height: 3rem;
+  font-size: 1.3rem;
+}
+
+button:hover {
+  background-color: var(--darker);
 }
 
 .backdrop {
@@ -59,16 +93,25 @@ button {
 }
 
 .modal {
-  background-color: lightblue;
+  background-color: var(--neutral-gray);
   position: fixed;
   top: 50%;
   left: 50%;
   width: clamp(300px, 50vw, 400px);
   transform: translate(-50%, -50%);
-  border: 3px solid black;
+  border: 3px solid var(--dark);
   display: flex;
   flex-direction: column;
   z-index: 1000;
   padding: 1rem;
   border-radius: 0.5rem;
+}
+
+.modal h2 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.modal p {
+  font-size: 1.3rem;
 }

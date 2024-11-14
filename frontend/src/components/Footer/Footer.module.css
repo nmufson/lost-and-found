@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  padding: 0 0.5rem 0 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.footerContainer {
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
