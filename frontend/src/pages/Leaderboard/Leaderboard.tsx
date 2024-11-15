@@ -6,6 +6,7 @@ import ScoreItem from '../../components/ScoreItem/ScoreItem';
 import { useLocation } from 'react-router-dom';
 import { fetchPhotos } from '../../services/photoServices';
 import Loading from '../../components/Loading/Loading';
+import Error from '../../components/Error/Error';
 
 const Leaderboard = () => {
   const location = useLocation();
@@ -42,11 +43,9 @@ const Leaderboard = () => {
     loadPhotos();
   }, []);
 
-  if (error) {
-    return error;
-  }
-
   if (loading) return <Loading />;
+
+  if (error) return <Error error={error} />;
 
   return (
     <div className={styles.leaderboard}>

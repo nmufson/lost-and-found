@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { GameInfo } from '../../../../types'; // Adjust import path as needed
+import { GameInfo } from '../../../../types';
 
 interface UseGameTimerProps {
   isGameActive: boolean;

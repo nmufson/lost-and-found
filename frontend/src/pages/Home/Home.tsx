@@ -3,6 +3,7 @@ import PhotoPreview from '../../components/PhotoPreview/PhotoPreview';
 import { useOutletContext } from 'react-router-dom';
 import { Photo } from '../../../types';
 import Loading from '../../components/Loading/Loading';
+import Error from '../../components/Error/Error';
 
 interface OutletContext {
   photos: Photo[];
@@ -10,9 +11,10 @@ interface OutletContext {
 }
 
 const Home = () => {
-  const { photos, loading } = useOutletContext<OutletContext>();
+  const { photos, loading, error } = useOutletContext<OutletContext>();
 
   if (loading) return <Loading />;
+  if (error) return <Error error={error} />;
   return (
     <div className={styles.home}>
       <h1>Select a Game to Start!</h1>

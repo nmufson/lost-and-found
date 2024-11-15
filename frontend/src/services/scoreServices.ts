@@ -5,25 +5,20 @@ export const submitScore = async (
   username: string,
   photoId: number,
 ) => {
-  try {
-    const response = await fetch(`${API_URL}/photo/${photoId}/score`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        time,
-        username,
-        photoId,
-      }),
-    });
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to submit score');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error submitting score:', error);
-    throw error;
+  const response = await fetch(`${API_URL}/photo/${photoId}/score`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      time,
+      username,
+      photoId,
+    }),
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to submit score');
   }
+  return await response.json();
 };

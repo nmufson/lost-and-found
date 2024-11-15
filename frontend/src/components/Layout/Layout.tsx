@@ -39,15 +39,11 @@ const Layout = () => {
     loadPhotos();
   }, []);
 
-  if (error) {
-    return error;
-  }
-
   return (
     <>
       <Header />
       <Main>
-        <Outlet context={{ photos, loading }} />
+        <Outlet context={{ photos, loading, error }} />
       </Main>
       <Footer />
     </>

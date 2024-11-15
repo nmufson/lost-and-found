@@ -2,16 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// export async function getPhotoPreviews() {
-//   return await prisma.photo.findMany({
-//     select: {
-//       id: true,
-//       name: true,
-//       image: true,
-//     },
-//   });
-// }
-
 export async function getPhotos() {
   return await prisma.photo.findMany({
     include: {

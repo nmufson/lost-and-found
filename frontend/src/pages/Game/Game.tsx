@@ -50,7 +50,6 @@ const Game = () => {
 
   const handleSubmitScore = async (username: string) => {
     try {
-      // store the time in deciseconds and format later
       const response = await submitScore(gameInfo.time, username, photo.id);
       const newScore = response.newScore;
       console.log(newScore);
