@@ -1,6 +1,6 @@
-import * as photoController from '../controllers/photoController.ts';
-import * as scoreController from '../controllers/scoreController.ts';
-import userNameValidation from '../utils/validators.ts';
+import * as photoController from '../controllers/photoController';
+import * as scoreController from '../controllers/scoreController';
+import userNameValidation from '../utils/validators';
 
 import { Router } from 'express';
 

@@ -1,32 +1,36 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPhotoPreviews = getPhotoPreviews;
-exports.getPhotoById = getPhotoById;
-exports.getPhotoWithScoresById = getPhotoWithScoresById;
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-async function getPhotoPreviews() {
+export async function getPhotos() {
     return await prisma.photo.findMany({
-        select: {
-            id: true,
-            name: true,
-            image: true,
+        include: {
+            characters: true,
+            scores: {
+                orderBy: {
+                    time: 'asc',
+                },
+            },
         },
     });
 }
-async function getPhotoById(photoId) {
+export async function getPhotoById(photoId) {
     return await prisma.photo.findUnique({
         where: { id: photoId },
         select: {
             name: true,
             image: true,
+            characters: true,
         },
+    });
+}
+export async function getPhotoBySlug(slug) {
+    return await prisma.photo.findUnique({
+        where: { slug },
         include: {
             characters: true,
         },
     });
 }
-async function getPhotoWithScoresById(photoId) {
+export async function getPhotoWithScoresById(photoId) {
     return await prisma.photo.findUnique({
         where: { id: photoId },
         select: {
