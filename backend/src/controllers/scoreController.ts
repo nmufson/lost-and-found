@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as scoreServices from '../services/scoreServices';
+import * as scoreServices from '../services/scoreServices.ts';
 import catchAsync from '../utils/catchAsync.ts';
 import { validationResult } from 'express-validator';
 
@@ -16,18 +16,3 @@ export const newScore = catchAsync(async (req: Request, res: Response) => {
 
   res.status(201).json({ message: 'Score recorded successfully', newScore });
 });
-
-export const getScoresByPhotoId = catchAsync(
-  async (req: Request, res: Response) => {
-    const { photoId } = req.body;
-
-    const scores = await scoreServices.getScoresByPhotoId(photoId);
-    if (!scores) {
-      return res.status(404).json({ error: 'Scores not found' });
-    }
-
-    return res
-      .status(200)
-      .json({ message: 'Scores retrieved successfully.', scores });
-  },
-);

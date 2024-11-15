@@ -13,7 +13,7 @@ export async function newScore(
   });
 }
 
-export async function getScores(photoId) {
+export async function getScores(photoId: number) {
   return await prisma.score.findMany({
     where: { photoId },
     orderBy: {

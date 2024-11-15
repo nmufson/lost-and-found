@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+
 class CustomError extends Error {
   statusCode: number;
   details?: string;
@@ -10,23 +12,16 @@ class CustomError extends Error {
   }
 }
 
-import { Request, Response, NextFunction } from 'express';
-
-const errorHandler = (
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+const errorHandler: ErrorRequestHandler = (err, req, res, next): void => {
   if (err instanceof CustomError) {
-    return res.status(err.statusCode).json({
+    res.status(err.statusCode).json({
       message: err.message,
       details: err.details || 'No additional details',
     });
   }
 
   console.error(err);
-  return res.status(500).json({
+  res.status(500).json({
     message: 'An unexpected error occurred',
   });
 };
