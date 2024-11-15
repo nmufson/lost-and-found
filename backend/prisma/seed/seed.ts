@@ -9,13 +9,13 @@ async function main() {
   const photoData = [
     {
       image: '/images/illustrations/space.jpg',
-      name: 'Space',
-      slug: 'space',
+      name: 'Orbit Odyssey',
+      slug: 'orbit-odyssey',
     },
     {
       image: '/images/illustrations/town.jpg',
-      name: 'Town',
-      slug: 'town',
+      name: 'Wacky Town',
+      slug: 'wacky-town',
     },
     {
       image: '/images/illustrations/gamer-hub.jpg',

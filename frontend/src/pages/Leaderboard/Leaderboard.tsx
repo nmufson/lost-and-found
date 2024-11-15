@@ -1,19 +1,17 @@
 import styles from './Leaderboard.module.css';
 import { useEffect, useState } from 'react';
-
 import { Photo } from '../../../types';
 import PhotoPreview from '../../components/PhotoPreview/PhotoPreview';
 import ScoreItem from '../../components/ScoreItem/ScoreItem';
-import { useLocation, useOutletContext } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { fetchPhotos } from '../../services/photoServices';
+import Loading from '../../components/Loading/Loading';
 
 const Leaderboard = () => {
   const location = useLocation();
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [error, setError] = useState<string | null>(null);
-
-  // location state comes from game page after user submits score
-
+  const [loading, setLoading] = useState<boolean>(true);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   // fetch so we always have updated scores
@@ -22,9 +20,10 @@ const Leaderboard = () => {
       try {
         const data = await fetchPhotos();
         setPhotos(data.photos);
+        // location state comes from game page after user submits score
         if (location.state?.photoId) {
           const photo = data.photos.find(
-            (photo) => photo.id === location.state?.photoId,
+            (photo: Photo) => photo.id === location.state?.photoId,
           );
           setSelectedPhoto(photo);
         } else if (!selectedPhoto) {
@@ -36,6 +35,8 @@ const Leaderboard = () => {
         } else {
           setError('An unknown error occurred');
         }
+      } finally {
+        setLoading(false);
       }
     };
     loadPhotos();
@@ -44,6 +45,8 @@ const Leaderboard = () => {
   if (error) {
     return error;
   }
+
+  if (loading) return <Loading />;
 
   return (
     <div className={styles.leaderboard}>

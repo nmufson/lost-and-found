@@ -10,6 +10,7 @@ import { useGameContext } from '../../context/gameContext';
 const Layout = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const { resetGameInfo } = useGameContext();
 
   const location = useLocation();
@@ -32,7 +33,7 @@ const Layout = () => {
           setError('An unknown error occurred');
         }
       } finally {
-        // setLoading(false);
+        setLoading(false);
       }
     };
     loadPhotos();
@@ -46,7 +47,7 @@ const Layout = () => {
     <>
       <Header />
       <Main>
-        <Outlet context={photos} />
+        <Outlet context={{ photos, loading }} />
       </Main>
       <Footer />
     </>

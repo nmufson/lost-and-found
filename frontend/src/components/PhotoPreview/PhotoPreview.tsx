@@ -36,7 +36,11 @@ const PhotoPreview = ({
       onClick={handleClick}
     >
       <h2>{photo.name}</h2>
-      <img src={imageURL} alt={`Image preview for ${photo.name}`} />
+      <img
+        src={imageURL}
+        alt={`Image preview for ${photo.name}`}
+        className={styles.image}
+      />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import formatTime from '../../../utils/formatTime';
 import { validateUsername, FeedbackProps } from './validateUsername';
 
 interface RecordTimeModalProps {
-  handleSubmitScore: () => void;
+  handleSubmitScore: (username: string | null) => void;
   time: number;
 }
 
@@ -35,14 +35,14 @@ const RecordTimeModal = ({ handleSubmitScore, time }: RecordTimeModalProps) => {
         <p>Enter username to save your score to the leaderboards:</p>
         <div className={styles.inputDiv}>
           <input
-            className={styles.usernameInput}
+            className={`${styles.usernameInput} ${feedback.message !== null ? styles.error : ''}`}
             type="text"
             id="username"
             name="username"
             placeholder="username"
             maxLength={20}
             onChange={handleChange}
-            value={username}
+            value={username || undefined}
           ></input>
           <p className={styles.feedback}>{feedback.message}</p>
         </div>

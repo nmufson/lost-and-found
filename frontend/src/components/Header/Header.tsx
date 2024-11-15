@@ -29,6 +29,7 @@ const Header = () => {
               {characters?.map((char) => {
                 return (
                   <div
+                    key={char.id}
                     className={`${styles.charContainer} ${char.found ? styles.found : ''}`}
                   >
                     <CharacterIcon character={char} />

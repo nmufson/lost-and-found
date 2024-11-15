@@ -6,7 +6,6 @@ export const submitScore = async (
   photoId: number,
 ) => {
   try {
-    console.log(time, username, photoId);
     const response = await fetch(`${API_URL}/photo/${photoId}/score`, {
       method: 'POST',
       headers: {
@@ -19,8 +18,8 @@ export const submitScore = async (
       }),
     });
     if (!response.ok) {
-      const errorMessage = `Failed to submit score: ${response.status} ${response.statusText}`;
-      throw new Error(errorMessage);
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to submit score');
     }
     return await response.json();
   } catch (error) {

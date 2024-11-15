@@ -1,11 +1,11 @@
 import styles from './CharacterSelect.module.css';
-import CharacterItem from '../CharacterItem/CharacterItem';
+import CharacterSelectItem from '../CharacterSelectItem/CharacterSelectItem';
 import { Character } from '../../../types';
 
 interface CharacterSelectProps {
   positionX: number;
   positionY: number;
-  characters: Character[];
+  characters: Character[] | null;
   handleCharacterClick: (character: Character) => void;
 }
 
@@ -17,14 +17,15 @@ const CharacterSelect = ({
 }: CharacterSelectProps) => {
   return (
     <div
+      data-testid="character-select"
       className={styles.characterSelect}
       style={{
-        left: positionX,
-        top: positionY,
+        left: `${positionX * 100}%`,
+        top: `${positionY * 100}%`,
       }}
     >
-      {characters.map((char) => (
-        <CharacterItem
+      {characters?.map((char) => (
+        <CharacterSelectItem
           key={char.id}
           character={char}
           handleCharacterClick={() => handleCharacterClick(char)}

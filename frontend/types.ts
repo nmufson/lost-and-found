@@ -41,3 +41,15 @@ export interface GameContextType {
   setCharacters: React.Dispatch<React.SetStateAction<Character[] | null>>;
   resetGameInfo: () => void;
 }
+
+export interface MenuState {
+  isOpen: boolean;
+  initialPosition: { x: number; y: number } | null;
+  relativePosition: { x: number; y: number } | null;
+}
+
+export interface NotificatioState {
+  isVisible: boolean;
+  success: boolean | null;
+  character: Character | null;
+}

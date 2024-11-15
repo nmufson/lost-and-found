@@ -15,7 +15,7 @@ const StartGameModal = ({ photo, handleStartGame }: StartGameModalProps) => {
         <h2>Find the Following Characters</h2>
         <div className={styles.iconContainer}>
           {photo.characters.map((char) => (
-            <CharacterIcon character={char} />
+            <CharacterIcon key={char.id} character={char} />
           ))}
         </div>
         <p>Start Game to Begin</p>
