@@ -1,6 +1,6 @@
-import * as photoController from '../controllers/photoController';
-import * as scoreController from '../controllers/scoreController';
-import userNameValidation from '../utils/validators';
+import * as photoController from '../controllers/photoController.js';
+import * as scoreController from '../controllers/scoreController.js';
+import userNameValidation from '../utils/validators.js';
 import { Router } from 'express';
 const router = Router();
 router.get('/', photoController.getPhotos);
