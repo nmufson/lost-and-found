@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import * as photoServices from '../services/photoServices';
-import catchAsync from '../utils/catchAsync';
+import * as photoServices from '../services/photoServices.js';
+import catchAsync from '../utils/catchAsync.js';
 
 export const getPhotos = catchAsync(async (req: Request, res: Response) => {
   const photos = await photoServices.getPhotos();

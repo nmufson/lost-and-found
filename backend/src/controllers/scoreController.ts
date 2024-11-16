@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import * as scoreServices from '../services/scoreServices';
-import catchAsync from '../utils/catchAsync';
+import * as scoreServices from '../services/scoreServices.js';
+import catchAsync from '../utils/catchAsync.js';
 import { validationResult } from 'express-validator';
 
 export const newScore = catchAsync(async (req: Request, res: Response) => {
