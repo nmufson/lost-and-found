@@ -10,14 +10,22 @@ const Footer = () => {
             Email
           </a>{' '}
           |{' '}
-          <a href="https://www.linkedin.com/in/nicholasmufson/" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/nicholasmufson/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {' '}
-            rel="noopener noreferrer" LinkedIn
+            LinkedIn
           </a>{' '}
           |{' '}
-          <a href="https://github.com/nmufson" target="_blank">
+          <a
+            href="https://github.com/nmufson"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {' '}
-            rel="noopener noreferrer" GitHub
+            GitHub
           </a>
         </p>
       </div>
