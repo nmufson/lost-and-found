@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.use(router);
 app.use(errorHandler);
 
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, '0.0.0.0', () =>
   console.log(`Express app listening on port ${PORT}!`),
 );
