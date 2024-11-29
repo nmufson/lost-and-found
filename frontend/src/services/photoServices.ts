@@ -1,7 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const fetchPhotos = async () => {
-  const response = await fetch(`${API_URL}/`);
+  const response = await fetch(`${API_URL}`);
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || 'Failed to fetch photo previews');
