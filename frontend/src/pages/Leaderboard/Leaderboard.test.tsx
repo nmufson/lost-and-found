@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import Leaderboard from './Leaderboard';
+import { Photo, Score } from '../../../types';
 import { fetchPhotos } from '../../services/photoServices';
 import '@testing-library/jest-dom';
 
@@ -22,7 +23,13 @@ vi.mock('../../components/Loading/Loading', () => ({
 }));
 
 vi.mock('../../components/PhotoPreview/PhotoPreview', () => ({
-  default: ({ photo, selectedPhoto }) => (
+  default: ({
+    photo,
+    selectedPhoto,
+  }: {
+    photo: Photo;
+    selectedPhoto?: Photo;
+  }) => (
     <div data-testid="photo-preview">
       {photo.name}
       {selectedPhoto?.id === photo.id && ' (Selected)'}
@@ -31,7 +38,7 @@ vi.mock('../../components/PhotoPreview/PhotoPreview', () => ({
 }));
 
 vi.mock('../../components/ScoreItem/ScoreItem', () => ({
-  default: ({ score, place }) => (
+  default: ({ score, place }: { score: Score; place: number }) => (
     <div data-testid="score-item">
       {place}. {score.username} - {score.time}
     </div>

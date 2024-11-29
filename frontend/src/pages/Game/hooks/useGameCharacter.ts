@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
-import { Character, NotificationState } from '../types/gameTypes';
+import { Character, NotificationState } from '../../../../types';
 import { MenuState } from '../../../../types';
 
 interface UseGameCharacterProps {
-  characters: Character[];
+  characters: Character[] | null;
   setCharacters: (characters: Character[]) => void;
   menu: MenuState;
   setMenu: (menu: MenuState) => void;
@@ -39,13 +39,14 @@ export const useGameCharacter = ({
 
     if (isCorrectLocation) {
       setNotification({ isVisible: true, success: true, character });
-      const newCharacters = characters.map((char) =>
+      const newCharacters = characters?.map((char) =>
         char.id === character.id ? { ...char, found: true } : char,
       );
-      setCharacters(newCharacters);
-
-      if (newCharacters.every((char) => char.found)) {
-        onGameComplete();
+      if (newCharacters) {
+        setCharacters(newCharacters);
+        if (newCharacters.every((char) => char.found)) {
+          onGameComplete();
+        }
       }
     } else {
       setNotification({ isVisible: true, success: false, character: null });

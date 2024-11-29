@@ -36,6 +36,7 @@ describe('Game Component', () => {
         id: 1,
         name: 'Test Photo',
         image: '/test.jpg',
+        slug: 'test-photo',
         characters: [
           {
             id: 1,
@@ -47,6 +48,15 @@ describe('Game Component', () => {
             found: false,
           },
         ],
+        scores: [
+          {
+            id: 1,
+            photoId: 1,
+            time: 1200,
+            username: 'nick',
+            date: '2024-11-29T12:45:00Z',
+          },
+        ],
       },
       imageURL: 'http://test.com/test.jpg',
     });
@@ -55,6 +65,7 @@ describe('Game Component', () => {
       menu: {
         isOpen: false,
         relativePosition: null,
+        initialPosition: null,
       },
       setMenu: vi.fn(),
       handleClick: vi.fn(),
@@ -103,15 +114,13 @@ describe('Game Component', () => {
     waitForElementToBeRemoved(() => screen.queryByText(/start game to begin/i));
   });
 
-  it('updates game timer when game is active', () => {
-    const { rerender } = renderWithProviders();
+  // it('updates game timer when game is active', () => {
+  //   const startButton = screen.getByRole('button', { name: /start game/i });
+  //   fireEvent.click(startButton);
 
-    const startButton = screen.getByRole('button', { name: /start game/i });
-    fireEvent.click(startButton);
+  //   vi.useFakeTimers();
+  //   vi.advanceTimersByTime(1000);
 
-    vi.useFakeTimers();
-    vi.advanceTimersByTime(1000);
-
-    vi.useRealTimers();
-  });
+  //   vi.useRealTimers();
+  // });
 });

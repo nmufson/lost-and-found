@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SuccessIcon = ({ color = 'green' }) => {
   return (
     <svg

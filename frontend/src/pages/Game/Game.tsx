@@ -48,12 +48,14 @@ const Game = () => {
     }));
   };
 
-  const handleSubmitScore = async (username: string) => {
+  const handleSubmitScore = async (username: string | null) => {
     try {
-      const response = await submitScore(gameInfo.time, username, photo.id);
-      const newScore = response.newScore;
-      console.log(newScore);
-      navigate('/leaderboard', { state: { photoId: photo.id } });
+      if (username && photo) {
+        const response = await submitScore(gameInfo.time, username, photo.id);
+        const newScore = response.newScore;
+        console.log(newScore);
+        navigate('/leaderboard', { state: { photoId: photo?.id } });
+      }
     } catch (error) {
       console.error('Failed to submit score:', error);
     }

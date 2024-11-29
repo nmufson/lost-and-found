@@ -48,7 +48,7 @@ export interface MenuState {
   relativePosition: { x: number; y: number } | null;
 }
 
-export interface NotificatioState {
+export interface NotificationState {
   isVisible: boolean;
   success: boolean | null;
   character: Character | null;

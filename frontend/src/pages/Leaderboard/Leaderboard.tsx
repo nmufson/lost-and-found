@@ -31,11 +31,7 @@ const Leaderboard = () => {
           setSelectedPhoto(data.photos[1]);
         }
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError('An unknown error occurred');
-        }
+        setError('Error loading photos');
       } finally {
         setLoading(false);
       }

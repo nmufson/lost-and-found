@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { useOutletContext } from 'react-router-dom';
 import Home from './Home';
 import '@testing-library/jest-dom';
-import Loading from '../../components/Loading/Loading';
+import { Photo } from '../../../types';
 
 vi.mock('react-router-dom', () => ({
   useOutletContext: vi.fn(),
@@ -14,7 +14,9 @@ vi.mock('../../components/Loading/Loading', () => ({
 }));
 
 vi.mock('../../components/PhotoPreview/PhotoPreview', () => ({
-  default: ({ photo }) => <div data-testid="photo-preview">{photo.name}</div>,
+  default: ({ photo }: { photo: Photo }) => (
+    <div data-testid="photo-preview">{photo.name}</div>
+  ),
 }));
 
 describe('Home Component', () => {

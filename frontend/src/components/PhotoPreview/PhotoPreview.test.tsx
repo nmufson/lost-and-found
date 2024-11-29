@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import PhotoPreview from './PhotoPreview';
 import { Photo } from '../../../types';
+import { Mock, vi } from 'vitest';
 
 const mockPhoto: Photo = {
   id: 1,
@@ -50,7 +51,7 @@ describe('PhotoPreview Component', () => {
 
   it('should navigate to the correct game page when clicked in home view', () => {
     const mockNavigate = vi.fn();
-    (useNavigate as vi.Mock).mockReturnValue(mockNavigate);
+    (useNavigate as unknown as Mock).mockReturnValue(mockNavigate);
 
     render(
       <Router>

@@ -8,6 +8,7 @@ import Error from '../../components/Error/Error';
 interface OutletContext {
   photos: Photo[];
   loading: boolean;
+  error: string | null;
 }
 
 const Home = () => {

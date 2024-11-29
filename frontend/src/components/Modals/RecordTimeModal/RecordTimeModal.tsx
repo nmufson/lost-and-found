@@ -20,7 +20,6 @@ const RecordTimeModal = ({ handleSubmitScore, time }: RecordTimeModalProps) => {
     setFeedback(validateUsername(e.target.value));
     console.log(feedback.isValid);
   };
-  console.log(time);
 
   return (
     <>
