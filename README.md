@@ -2,7 +2,7 @@
 
 Lost & Found is a full-stack "Where's Waldo" style game featuring a backend that serves game images and character coordinates, and a frontend where players can find characters, compete for record times, and add their scores to the leaderboard.
 ## Live Demo 
-[https://blog-platform-chi-seven.vercel.app/](https://lost-and-found-frontend-plum.vercel.app/)
+[https://lost-and-found-frontend-plum.vercel.app/](https://lost-and-found-frontend-plum.vercel.app/)
 ## Technologies Used
 ### Frontend
 - **React.js**: UI library for building interactive components.
