@@ -69,6 +69,8 @@ const Game = () => {
     onGameComplete: handleStopGame,
   });
 
+  console.log(styles.blurred, styles.illustration);
+
   if (!photo) return <div>loading...</div>;
 
   return (
@@ -90,7 +92,7 @@ const Game = () => {
         <img
           src={imageURL || undefined}
           ref={imageRef}
-          className={styles.illustration}
+          className={`${gameInfo.isStartGameModalOpen ? styles.blurred : ''} ${styles.illustration}`}
           alt={`Game Illustration - ${photo.name}`}
           onClick={handleClick}
         />

@@ -14,7 +14,7 @@ const Header = () => {
   const isGame = currentPath.slice(0, 5) === '/game';
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isGame ? styles.game : ''}`}>
       <div
         className={`${styles.headerContainer} ${!isGame ? styles.home : ''}`}
       >

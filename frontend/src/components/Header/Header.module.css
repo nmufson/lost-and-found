@@ -5,6 +5,12 @@
   justify-content: center;
 }
 
+.header.game {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .headerContainer {
   padding: 0.5rem;
   width: 100%;

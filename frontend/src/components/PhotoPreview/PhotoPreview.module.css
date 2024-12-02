@@ -21,6 +21,15 @@
   margin-top: 0.5rem;
 }
 
+.leaderboardPreview .image {
+  height: 13rem;
+  width: 13rem;
+}
+
+.leaderboardPreview h2 {
+  font-size: 1.5rem;
+}
+
 .photoPreview:hover h2 {
   text-decoration: underline;
 }

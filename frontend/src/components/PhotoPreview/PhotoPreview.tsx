@@ -32,7 +32,7 @@ const PhotoPreview = ({
 
   return (
     <div
-      className={`${styles.photoPreview} ${selected ? styles.selected : ''}`}
+      className={`${styles.photoPreview} ${selected ? styles.selected : ''} ${home ? '' : styles.leaderboardPreview}`}
       onClick={handleClick}
     >
       <h2>{photo.name}</h2>
