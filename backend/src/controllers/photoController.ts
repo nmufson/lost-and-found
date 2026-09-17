@@ -13,19 +13,21 @@ export const getPhotos = catchAsync(async (req: Request, res: Response) => {
   res.json(data);
 });
 
-export const getPhotoById = catchAsync(async (req: Request, res: Response) => {
-  const photoId = parseInt(req.params.photoId, 10);
-  const photo = await photoServices.getPhotoById(photoId);
+export const getPhotoById = catchAsync(
+  async (req: Request<{ photoId: string }>, res: Response) => {
+    const photoId = parseInt(req.params.photoId, 10);
+    const photo = await photoServices.getPhotoById(photoId);
 
-  if (!photo) {
-    return res.status(404).json({ message: 'Photo not found' });
-  }
+    if (!photo) {
+      return res.status(404).json({ message: 'Photo not found' });
+    }
 
-  res.status(200).json({ message: 'Photo found successfully', photo });
-});
+    res.status(200).json({ message: 'Photo found successfully', photo });
+  },
+);
 
 export const getScoresByPhotoId = catchAsync(
-  async (req: Request, res: Response) => {
+  async (req: Request<{ photoId: string }>, res: Response) => {
     const photoId = parseInt(req.params.photoId, 10);
     const scoreData = await photoServices.getPhotoWithScoresById(photoId);
 
