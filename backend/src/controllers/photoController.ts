@@ -42,7 +42,7 @@ export const getScoresByPhotoId = catchAsync(
 );
 
 export const getPhotoBySlug = catchAsync(
-  async (req: Request, res: Response) => {
+  async (req: Request<{ slug: string }>, res: Response) => {
     const slug = req.params.slug;
     const photo = await photoServices.getPhotoBySlug(slug);
 
